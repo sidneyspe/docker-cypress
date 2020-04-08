@@ -1,0 +1,19 @@
+FROM mhart/alpine-node:12
+
+MAINTAINER Sidney Pimentel <sidneyspe@gmail.com>
+
+# SYSTEM UPDATE AND ADD UTILITIES
+RUN apk update && apk add \
+    curl \
+    wget \
+    git \
+    chromium \
+    gnupg \ 
+    xvfb
+#
+# COMMAND FOR EXECUTE CHROME HEADLESS    
+RUN Xvfb -ac -screen scrn 1280x2000x24 :9.0 &
+RUN export DISPLAY=:9.0
+#
+# ADD CYPRESS LATEST 
+RUN yarn global add cypress@latest
